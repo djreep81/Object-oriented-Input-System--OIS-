@@ -88,8 +88,11 @@ restrictions:
 #   undef _OISExport
 #   define _OISExport __attribute__((visibility("default")))
 #else //Probably Linux
-#	define OIS_LINUX_PLATFORM
-#	include <unistd.h>
+#  if defined(__ANDROID__) || defined(ANDROID)
+#       define OIS_ANDROID_PLATFORM
+#  else
+#       define OIS_LINUX_PLATFORM
+#  endif
 #endif
 
 //Is Processor 32 or 64 bits...

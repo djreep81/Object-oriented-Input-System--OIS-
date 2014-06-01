@@ -46,7 +46,7 @@ namespace OIS
 	class _OISExport MultiTouchState
 	{
 	public:
-		MultiTouchState() : width(50), height(50), touchType(MT_None) {};
+		MultiTouchState() : width(50), height(50), touchType(MT_None), touchId(-1), pressure(0.0f) {};
 
 		/** Represents the height/width of your display area.. used if touch clipping
 		or touch grabbed in case of X11 - defaults to 50.. Make sure to set this
@@ -63,10 +63,13 @@ namespace OIS
 		Axis Z;
 
         int touchType;
+        int touchId;
+        float pressure;
 
         inline bool touchIsType( MultiTypeEventTypeID touch ) const
 		{
-			return ((touchType & ( 1L << touch )) == 0) ? false : true;
+			//return ((touchType & ( 1L << touch )) == 0) ? false : true;
+                        return touch == touchType;
 		}
         
 		//! Clear all the values
@@ -76,6 +79,8 @@ namespace OIS
 			Y.clear();
 			Z.clear();
             touchType = MT_None;
+            touchId = -1;
+            pressure = 0.0f;
 		}
 	};
 

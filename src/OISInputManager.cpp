@@ -32,6 +32,8 @@ restrictions:
 #  include "SDL/SDLInputManager.h"
 #elif defined OIS_WIN32_PLATFORM
 #  include "win32/Win32InputManager.h"
+#elif defined OIS_ANDROID_PLATFORM
+#  include "android/AndroidInputManager.h"
 #elif defined OIS_LINUX_PLATFORM
 #  include "linux/LinuxInputManager.h"
 #elif defined OIS_APPLE_PLATFORM
@@ -116,6 +118,8 @@ InputManager* InputManager::createInputSystem( ParamList &paramList )
 	im = new MacInputManager();
 #elif defined OIS_IPHONE_PLATFORM
 	im = new iPhoneInputManager();
+#elif defined OIS_ANDROID_PLATFORM
+	im = new AndroidInputManager();
 #else
 	OIS_EXCEPT(E_General, "No platform library.. check build platform defines!");
 #endif 
