@@ -30,6 +30,8 @@ restrictions:
 
 #include "OISPrereqs.h"
 
+#include <unistd.h>
+
 //! Max number of elements to collect from buffered input
 #define JOY_BUFFERSIZE 64
 

@@ -3,17 +3,21 @@ PROJECT(OIS)
 
 INCLUDE_DIRECTORIES(includes)
 
+FILE(GLOB ois_headers headers/*.h)
 FILE(GLOB ois_files src/*.cpp)
 FILE(GLOB ois_files_android src/android/*.cpp)
-FILE(GLOB ois_headers headers/*.h)
+FILE(GLOB ois_files_linux src/linux/*.cpp)
 
+#not neccessary to install header files for specific environment
 if ("${TARGETPLATFORM}" STREQUAL "ANDROID")
   ADD_LIBRARY (OIS ${ois_files} ${ois_files_android})
-  install(FILES includes/android/AndroidInputManager.h DESTINATION include/OIS/android/)
-  install(FILES includes/android/OISLog.h DESTINATION include/OIS)
+  #install(FILES includes/android/AndroidInputManager.h DESTINATION include/OIS/android/)
+  #install(FILES includes/android/OISLog.h DESTINATION include/OIS)
 endif()
 if ("${TARGETPLATFORM}" STREQUAL "LINUX")
-  ADD_LIBRARY (OIS ${ois_files})
+  ADD_LIBRARY (OIS ${ois_files} ${ois_files_linux})
+  #FILE(GLOB ois_header_linux includes/linux/*.h)
+  #install(FILES ${ois_header_linux} DESTINATION include/OIS/linux/)
 endif()
 
 
