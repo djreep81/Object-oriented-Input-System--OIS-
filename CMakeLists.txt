@@ -38,8 +38,7 @@ install(FILES includes/OISMouse.h DESTINATION include/OIS)
 install(FILES includes/OISMultiTouch.h DESTINATION include/OIS)
 install(FILES includes/OISObject.h DESTINATION include/OIS)
 install(FILES includes/OISPrereqs.h DESTINATION include/OIS)
-
-
+install(FILES "CMake/Packages/FindOIS.cmake" DESTINATION lib)
 
 
 
