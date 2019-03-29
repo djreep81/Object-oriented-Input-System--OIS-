@@ -7,16 +7,19 @@ FILE(GLOB ois_headers headers/*.h)
 FILE(GLOB ois_files src/*.cpp)
 FILE(GLOB ois_files_android src/android/*.cpp)
 FILE(GLOB ois_files_linux src/linux/*.cpp)
+FILE(GLOB ois_files_mac src/mac/*.cpp)
 
 #not neccessary to install header files for specific environment
 if (ANDROID)
   ADD_LIBRARY (OIS ${ois_files} ${ois_files_android})
   install(FILES includes/android/AndroidInputManager.h DESTINATION include/OIS/android/)
   #install(FILES includes/android/OISLog.h DESTINATION include/OIS)
-elseif (UNIX)
+elseif (UNIX AND NOT APPLE)
   ADD_LIBRARY (OIS ${ois_files} ${ois_files_linux})
   #FILE(GLOB ois_header_linux includes/linux/*.h)
   #install(FILES ${ois_header_linux} DESTINATION include/OIS/linux/)
+elseif (UNIX)
+  ADD_LIBRARY (OIS ${ois_files} ${ois_files_mac})
 endif()
 
 
